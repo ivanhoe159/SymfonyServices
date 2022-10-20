@@ -1,0 +1,11 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+
+balance:
+    path: /balance
+    controller: App\Controller\MainController::balance
+
+service:
+    path: /service
+    controller: App\Controller\MainController::service

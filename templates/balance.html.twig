@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Current balance</title>
+    <link rel="stylesheet" href="{{ asset('styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+        function openForm() {
+            document.getElementById("money-form").style.display = "block";
+        }
+            function closeForm() {
+            document.getElementById("money-form").style.display = "none";
+        }
+        function payForAll() {
+            alert("GOODBYE");
+        }
+    </script>
+</head>
+<body>
+<h1 class="maxx">Balance list</h1>
+<div class="flexer maxx">
+    <div class="second">
+        <p><button type="submit" class="enter f2 fx green" onclick="openForm()">Add money</button></p>
+    </div>
+    <div class="third">
+            <p><button type="submit" class="enter f2 fx red" onclick="payForAll()">Pay for all</button></p>
+    </div>
+    <div class="first">
+        <form method = "get" action = "/service">
+            <p><button type="submit" class="enter f2 fx">To services</button></p>
+        </form>
+    </div>
+</div>
+<h2>Current balance: {{ budget[0].balance }} RUB</h2>
+<div class="formhidd" id='money-form'>
+    <form role="form" action="/balance" autocomplete="off" method="POST">
+        <p class="pos">Money</p>
+        <input class="f1" type="number" value="0" name="summ">
+        <p><button type="submit" class="enter f2 green">Add</button></p>
+    </form>
+    <p><button class="enter f2 red" onclick="closeForm()">Close</button></p>
+</div>
+<div class="rateblock">
+    <br>
+    <table>
+        <tr>
+            <td>Number</th>
+            <td>Service</th>
+            <td>Cost</th>
+            <td>Balance</th>
+            <td>Date</th>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

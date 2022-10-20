@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Current services</title>
+    <link rel="stylesheet" href="{{ asset('styles.css') }}">
+</head>
+<body>
+<h1 class="maxx">Services list</h1>
+<div class="flexer maxx">
+    <div class="first">
+        <form method = "get" action = "/balance">
+            <p><button type="submit" class="enter f2 fx green">New service</button></p>
+        </form>
+    </div>
+    <div class="second">
+        <form method = "get" action = "/balance">
+            <p><button type="submit" class="enter f2 fx">To balance</button></p>
+        </form>
+    </div>
+</div>
+<h2>Current balance: {{ budget[0].balance }} RUB</h2>
+{% set allcost = 0 %}
+<div class="rateblock">
+    <br>
+    <table>
+        <tr>
+            <td>Number</td>
+            <td>Service</td>
+            <td>Cost</td>
+            <td>Remove</td>
+        </tr>
+        {% set num = 1 %}
+        {% for service in services %}
+            <tr>
+                <th>{{ num }}</th>
+                <th>{{ service.name }}</th>
+                <th>{{ service.cost }}</th>
+                <th><button type="submit" class ="enter del deltd red">X</button></th>
+            </tr>
+        {% set num = num + 1 %}
+        {% set allcost = allcost + service.cost %}
+        {% endfor %}
+    </table>
+    <h2 class="minn">Current services payment: {{ allcost }} RUB/month</h2>
+</div>
+</body>
+</html>
