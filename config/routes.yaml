@@ -9,3 +9,7 @@ balance:
 service:
     path: /service
     controller: App\Controller\MainController::service
+
+addMoney:
+    path: /balance/add
+    controller: App\Controller\MainController::addMoney
