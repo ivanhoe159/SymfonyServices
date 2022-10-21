@@ -15,9 +15,6 @@
             function closeForm() {
             document.getElementById("money-form").style.display = "none";
         }
-        function payForAll() {
-            alert("GOODBYE");
-        }
     </script>
 </head>
 <body>
@@ -27,7 +24,9 @@
         <p><button type="submit" class="enter f2 fx green" onclick="openForm()">Add money</button></p>
     </div>
     <div class="third">
-            <p><button type="submit" class="enter f2 fx red" onclick="payForAll()">Pay for all</button></p>
+        <form role="form" action="/balance" autocomplete="off" method="POST">
+            <p><button type="submit" class="enter f2 fx red">Pay for all</button></p>
+        </form>
     </div>
     <div class="first">
         <form method = "get" action = "/service">
@@ -37,10 +36,10 @@
 </div>
 <h2>Current balance: {{ budget[0].balance }} RUB</h2>
 <div class="formhidd" id='money-form'>
-    <form role="form" action="/balance" autocomplete="off" method="POST">
+    <form role="form" action="{{ path('addMoney') }}" autocomplete="off" method="POST">
         <p class="pos">Money</p>
         <input class="f1" type="number" value="0" name="summ">
-        <p><button type="submit" class="enter f2 green">Add</button></p>
+        <p><input type="submit" class="enter f2 green" value="Add"></p>
     </form>
     <p><button class="enter f2 red" onclick="closeForm()">Close</button></p>
 </div>
