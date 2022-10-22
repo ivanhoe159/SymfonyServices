@@ -24,7 +24,7 @@
         <p><button type="submit" class="enter f2 fx green" onclick="openForm()">Add money</button></p>
     </div>
     <div class="third">
-        <form role="form" action="/balance" autocomplete="off" method="POST">
+        <form role="form" action="{{ path('flowIt') }}" autocomplete="off" method="POST">
             <p><button type="submit" class="enter f2 fx red">Pay for all</button></p>
         </form>
     </div>
@@ -49,10 +49,21 @@
         <tr>
             <td>Number</th>
             <td>Service</th>
+            <td>Date</th>
             <td>Cost</th>
             <td>Balance</th>
-            <td>Date</th>
         </tr>
+        {% set num = 1 %}
+        {% for transaction in transactions %}
+            <tr>
+                <th>{{ num }}</th>
+                <th>{{ transaction.service }}</th>
+                <th>{{ transaction.transdate.format('d.m.Y') }}</th>
+                <th>{{ transaction.cost }}</th>
+                <th>{{ transaction.balance }}</th>
+            </tr>
+            {% set num = num + 1 %}
+        {% endfor %}
     </table>
 </div>
 </body>

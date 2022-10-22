@@ -31,15 +31,16 @@
 </div>
 <h2>Current balance: {{ budget[0].balance }} RUB</h2>
 <div class="formhidd" id='service-form'>
-    <form role="form" action="{{ path('addMoney') }}" autocomplete="off" method="POST">
+    <form role="form" action="{{ path('addIt') }}" autocomplete="off" method="POST">
         <p class="pos">Services</p>
-        <select class="f1" name="select" size="4" multiple>
-            <option value="s1">Вода</option>
-            <option value="s2">Свет</option>
-            <option value="s3">Газ</option>
-            <option value="s4">Мусор</option>
+        <select class="f1" name="selects">
+            {% for service in services %}
+                {% if service.active == 0  %}
+                   <option value="{{ service.id }}">{{ service.name }}</option>
+                {% endif %}
+            {% endfor %}
         </select>
-        <p><input type="submit" class="enter f2 green" value="Add"></p>
+        <p><input type="submit" class="enter f2 green" value="Add">
     </form>
     <p><button class="enter f2 red" onclick="closeForm()">Close</button></p>
 </div>
@@ -55,14 +56,18 @@
         </tr>
         {% set num = 1 %}
         {% for service in services %}
+            {% if service.active == 1  %}
             <tr>
                 <th>{{ num }}</th>
                 <th>{{ service.name }}</th>
                 <th>{{ service.cost }}</th>
-                <th><button type="submit" class ="enter del deltd red">X</button></th>
+                <form role="form" action="{{ path('removeIt', { 'id': service.id }) }}" autocomplete="off" method="POST">
+                <th><button type="submit" name = "idBut" class ="enter del deltd red">X</button></th>
+                </form>
             </tr>
         {% set num = num + 1 %}
         {% set allcost = allcost + service.cost %}
+            {% endif %}
         {% endfor %}
     </table>
     <h2 class="minn">Current services payment: {{ allcost }} RUB/month</h2>

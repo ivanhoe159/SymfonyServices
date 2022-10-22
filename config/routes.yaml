@@ -13,3 +13,15 @@ service:
 addMoney:
     path: /balance/add
     controller: App\Controller\MainController::addMoney
+
+removeIt:
+    path: /service/{id}
+    controller: App\Controller\MainController::removeIt
+
+addIt:
+    path: /service/addIt/1
+    controller: App\Controller\MainController::addIt
+
+flowIt:
+    path: /balance/flowIt
+    controller: App\Controller\MainController::flowIt

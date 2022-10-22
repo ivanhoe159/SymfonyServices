@@ -19,6 +19,9 @@ class Service
     #[ORM\Column]
     private ?float $cost = null;
 
+    #[ORM\Column]
+    private ?int $active = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class Service
     public function setCost(float $cost): self
     {
         $this->cost = $cost;
+
+        return $this;
+    }
+
+    public function getActive(): ?int
+    {
+        return $this->active;
+    }
+
+    public function setActive(int $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }
