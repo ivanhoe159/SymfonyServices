@@ -12,16 +12,16 @@ service:
 
 addMoney:
     path: /balance/add
-    controller: App\Controller\MainController::addMoney
+    controller: App\Controller\BalanceController::addMoney
 
-removeIt:
+payAllServices:
+    path: /balance/payAll
+    controller: App\Controller\BalanceController::payAllServices
+
+removeService:
     path: /service/{id}
-    controller: App\Controller\MainController::removeIt
+    controller: App\Controller\ServiceController::removeService
 
-addIt:
-    path: /service/addIt/1
-    controller: App\Controller\MainController::addIt
-
-flowIt:
-    path: /balance/flowIt
-    controller: App\Controller\MainController::flowIt
+addNewService:
+    path: /service/add/1
+    controller: App\Controller\ServiceController::addNewService

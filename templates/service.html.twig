@@ -31,17 +31,24 @@
 </div>
 <h2>Current balance: {{ budget[0].balance }} RUB</h2>
 <div class="formhidd" id='service-form'>
-    <form role="form" action="{{ path('addIt') }}" autocomplete="off" method="POST">
+    <form role="form" action="{{ path('addNewService') }}" autocomplete="off" method="POST">
         <p class="pos">Services</p>
         <select class="f1" name="selects">
+            {% set numm = 1 %}
             {% for service in services %}
                 {% if service.active == 0  %}
-                   <option value="{{ service.id }}">{{ service.name }}</option>
+                    {% set numm = 2 %}
+                    <option value="{{ service.id }}">{{ service.name }}</option>
                 {% endif %}
             {% endfor %}
         </select>
-        <p><input type="submit" class="enter f2 green" value="Add">
-    </form>
+        <p class="pos">Value</p>
+        <input class="f1" type="number" value="1" min="1" name="val">
+        {% if numm == 2 %}
+        <p><input type="submit" class="enter f2 green" value="Subscribe"> </form>
+        {% else %}
+        <p class="pos">Nothing to add!</p> </form>
+        {% endif %}
     <p><button class="enter f2 red" onclick="closeForm()">Close</button></p>
 </div>
 {% set allcost = 0 %}
@@ -52,6 +59,7 @@
             <td>Number</td>
             <td>Service</td>
             <td>Cost</td>
+            <td>Value</td>
             <td>Remove</td>
         </tr>
         {% set num = 1 %}
@@ -60,13 +68,14 @@
             <tr>
                 <th>{{ num }}</th>
                 <th>{{ service.name }}</th>
-                <th>{{ service.cost }}</th>
-                <form role="form" action="{{ path('removeIt', { 'id': service.id }) }}" autocomplete="off" method="POST">
+                <th>{{ service.cost * service.value }}</th>
+                <th>{{ service.value }}</th>
+                <form role="form" action="{{ path('removeService', { 'id': service.id }) }}" autocomplete="off" method="POST">
                 <th><button type="submit" name = "idBut" class ="enter del deltd red">X</button></th>
                 </form>
             </tr>
         {% set num = num + 1 %}
-        {% set allcost = allcost + service.cost %}
+        {% set allcost = allcost + service.cost * service.value %}
             {% endif %}
         {% endfor %}
     </table>

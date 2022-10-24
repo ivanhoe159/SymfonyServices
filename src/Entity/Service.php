@@ -22,6 +22,12 @@ class Service
     #[ORM\Column]
     private ?int $active = null;
 
+    #[ORM\Column]
+    private ?int $value = null;
+
+    #[ORM\Column]
+    private ?int $maximvalue = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,7 +65,28 @@ class Service
     public function setActive(int $active): self
     {
         $this->active = $active;
+        return $this;
+    }
 
+    public function getValue(): ?int
+    {
+        return $this->value;
+    }
+
+    public function setValue(int $value): self
+    {
+        $this->value = $value;
+        return $this;
+    }
+
+    public function getMaximvalue(): ?int
+    {
+        return $this->maximvalue;
+    }
+
+    public function setMaximvalue(int $maximvalue): self
+    {
+        $this->maximvalue = $maximvalue;
         return $this;
     }
 }
