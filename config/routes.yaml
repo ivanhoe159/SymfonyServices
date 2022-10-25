@@ -18,6 +18,10 @@ payAllServices:
     path: /balance/payAll
     controller: App\Controller\BalanceController::payAllServices
 
+sortTransactions:
+    path: /balance/sort
+    controller: App\Controller\BalanceController::sortTransactions
+
 removeService:
     path: /service/{id}
     controller: App\Controller\ServiceController::removeService

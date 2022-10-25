@@ -15,13 +15,27 @@
             function closeForm() {
             document.getElementById("money-form").style.display = "none";
         }
+        function openSettings() {
+            document.getElementById("t-settings").style.display = "block";
+        }
+        function closeSettings() {
+            document.getElementById("t-settings").style.display = "none";
+        }
     </script>
 </head>
 <body>
-<h1 class="maxx">Balance list</h1>
+<h1 class="maxx">Balance and transactions</h1>
 <div class="flexer maxx">
     <div class="second">
         <p><button type="submit" class="enter f2 fx green" onclick="openForm()">Add money</button></p>
+    </div>
+    <div class="fourth">
+        <p><button type="submit" class="enter f2 fx green" onclick="openSettings()">Sort transactions</button></p>
+    </div>
+    <div class="fourth">
+        <form role="form" action="{{ path('balance') }}" autocomplete="off" method="POST">
+        <p><button type="submit" class="enter f2 fx green">Show all</button></p>
+        </form>
     </div>
     <div class="third">
         <form role="form" action="{{ path('payAllServices') }}" autocomplete="off" method="POST">
@@ -35,13 +49,32 @@
     </div>
 </div>
 <h2>Current balance: {{ budget[0].balance }} RUB</h2>
-<div class="formhidd" id='money-form'>
+<div class="formhidd mins" id='money-form'>
     <form role="form" action="{{ path('addMoney') }}" autocomplete="off" method="POST">
-        <p class="pos">Money</p>
-        <input class="f1" type="number" value="0" name="summ">
+        <h1>Money</h1>
+        <p class="pos">Amount (RUB)</p>
+        <input class="f1" type="number" value="1" min="1" max="25000" name="summ">
         <p><input type="submit" class="enter f2 green" value="Add"></p>
     </form>
     <p><button class="enter f2 red" onclick="closeForm()">Close</button></p>
+</div>
+<div class="formhidd" id='t-settings'>
+    <form role="form" action="{{ path('sortTransactions') }}" autocomplete="off" method="POST">
+        <h1>Sort settings</h1>
+        <p class="pos">Time period (from - to)</p>
+        <input class="f3" type="date" value="2022-10-24" min="1970-01-01" max="2050-01-01" name="date_start">
+        <input class="f3" type="date" value="2022-10-26" min="1970-01-01" max="2050-01-01" name="date_finish">
+        <p class="pos">Service</p>
+        <select class="f1" name="selects">
+            <option value="allserv">Все сервисы</option>
+            <option>Пополнение счета</option>
+            {% for service in services %}
+                    <option>{{ service.name }}</option>
+            {% endfor %}
+        </select>
+        <p><input type="submit" class="enter f2 green" value="Sort"></p>
+    </form>
+    <p><button class="enter f2 red" onclick="closeSettings()">Close</button></p>
 </div>
 <div class="rateblock">
     <br>
@@ -50,7 +83,7 @@
             <td>Number</th>
             <td>Service</th>
             <td>Date</th>
-            <td>Cost</th>
+            <td>Change</th>
             <td>Balance</th>
         </tr>
         {% set num = 1 %}

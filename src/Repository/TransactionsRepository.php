@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Transactions;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @extends ServiceEntityRepository<Transactions>
@@ -37,6 +38,35 @@ class TransactionsRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function sortTransactions(string $date_start, string $date_finish, string $sname): array
+    {
+        $entityManager = $this->getEntityManager();
+        if($sname != "allserv") {
+            $query = $entityManager->createQuery(
+                'SELECT p
+            FROM App\Entity\Transactions p
+            WHERE p.transdate > :date_start AND p.transdate < :date_finish AND p.service = :sname'
+            );
+            $query->setParameters(array(
+                'date_start' => $date_start,
+                'date_finish' => $date_finish,
+                 'sname' => $sname,));
+        }
+        else {
+            $query = $entityManager->createQuery(
+                'SELECT p
+            FROM App\Entity\Transactions p
+            WHERE p.transdate > :date_start AND p.transdate < :date_finish'
+            );
+            $query->setParameters(array(
+                'date_start' => $date_start,
+                'date_finish' => $date_finish,));
+        }
+
+        // returns an array of Product objects
+        return $query->getResult();
     }
 
 //    /**

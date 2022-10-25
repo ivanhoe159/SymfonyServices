@@ -15,9 +15,12 @@ class MainController extends AbstractController {
         $budget = $repository->findAll();
         $repository = $doctrine->getRepository(transactions::class);
         $transactions = $repository->findAll();
+        $repository = $doctrine->getRepository(service::class);
+        $services = $repository->findAll();
         return $this->render('balance.html.twig', [
             'budget' => $budget,
             'transactions' => $transactions,
+            'services' => $services,
         ]);
     }
     public function service(ManagerRegistry $doctrine)

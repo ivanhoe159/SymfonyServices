@@ -40,6 +40,13 @@ h3 {
     transform: translate(-50%, 0);
 }
 
+.f3 {
+    position: relative;
+    left: 33%;
+    transform: translate(-50%, 0);
+    font-size: 18px;
+}
+
 .centers {
 	text-align: center;
 	padding: 0px 0px;
@@ -212,7 +219,7 @@ a:hover {
     display: none;
     margin: 0 auto;
     width: 30%;
-    height: 50%;
+    height: 57%;
     left: 33%;
     top: 33%;
     background-color: white;
@@ -221,4 +228,12 @@ a:hover {
     border-radius: 20px;
     justify-content: center;
     position: fixed;
+}
+
+.mins {
+    height: 43%;
+}
+
+.mids {
+    height: 50%;
 }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Service;
+use App\Entity\Transactions;
 use App\Entity\Usermoney;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,6 +33,7 @@ class ServiceController extends AbstractController {
         $value = $request->request->get('val');
         $entity = $doctrine->getManager();
         $service = $doctrine->getRepository(service::class)->find($id);
+        $payment = $service->getCost() * $value;
         $service->setActive(1);
         $service->setValue($value);
         $entity->flush();

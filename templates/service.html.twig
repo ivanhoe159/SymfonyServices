@@ -18,7 +18,7 @@
     </script>
 </head>
 <body>
-<h1 class="maxx">Services list</h1>
+<h1 class="maxx">Services</h1>
 <div class="flexer maxx">
     <div class="first">
             <p><button type="submit" class="enter f2 fx green" onclick="openForm()">New service</button></p>
@@ -30,7 +30,7 @@
     </div>
 </div>
 <h2>Current balance: {{ budget[0].balance }} RUB</h2>
-<div class="formhidd" id='service-form'>
+<div class="formhidd mids" id='service-form'>
     <form role="form" action="{{ path('addNewService') }}" autocomplete="off" method="POST">
         <p class="pos">Services</p>
         <select class="f1" name="selects">
