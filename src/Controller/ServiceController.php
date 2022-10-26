@@ -46,7 +46,7 @@ class ServiceController extends AbstractController {
 
     public function addNewService(ManagerRegistry $doctrine, Request $request)
     {
-        $warn = "";
+        $warn = '';
         $id = $request->request->get('selects');
         $value = $request->request->get('val');
         $entity = $doctrine->getManager();

@@ -58,16 +58,16 @@ class BalanceController extends AbstractController
     public function addMoney(ManagerRegistry $doctrine, Request $request)
     {
         $id = 1;
-        $summa = $request->request->get('summ');
+        $amount = $request->request->get('summ');
         $entity = $doctrine->getManager();
         $balance = $doctrine->getRepository(usermoney::class)->find($id);
-        $balance->setBalance($balance->getBalance() + $summa);
+        $balance->setBalance($balance->getBalance() + $amount);
         $entity->flush();
         $transaction = new Transactions();
         $transaction->setService('Пополнение счета');
         $transaction->setTransdate(date_create_from_format('Y-m-d', date("Y-m-d")));
         $transaction->setTransname("Зачисление денег");
-        $transaction->setCost($summa);
+        $transaction->setCost($amount);
         $transaction->setBalance($balance->getBalance());
         $entity->persist($transaction);
         $entity->flush();

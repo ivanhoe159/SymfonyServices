@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
     padding: 0;
@@ -6,38 +7,73 @@ html, body {
 }
 
 h1 {
-	text-align: center;
-	font-family: "Sylfaen";
+    text-align: center;
+    font-family: "Sylfaen";
 }
 
 h2 {
-	font-family: "Sylfaen", serif;
+    font-family: "Sylfaen", serif;
     text-align: center;
     padding: 10px 15px;
 }
 
 h3 {
-	font-family: "Sylfaen", serif;
+    font-family: "Sylfaen", serif;
     left: 3px;
 }
 
-.tes {
-    text-align: center !important;
-    font-family: "Sylfaen", serif !important;
-    color: red;
+table {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    border-spacing: 60px 0px;
+}
+
+th,
+td {
+    text-align: center;
+    font-family: "Sylfaen", serif;
+    font-size: 25px;
+    padding: 3px;
+}
+
+th {
+    font-size: 23px;
+}
+
+select,
+option {
+    font-family: "Sylfaen", serif;
+    font-size: 20px;
+}
+
+a {
+    color: #005da8;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #00bfff;
 }
 
 .pos {
-	text-align: center;
-	font-family: "Sylfaen", serif;
-	font-size: 25px;
+    text-align: center;
+    font-family: "Sylfaen", serif;
+    font-size: 25px;
 }
 
 .f1 {
-	position: relative;
+    position: relative;
     left: 50%;
-	font-size: 18px;
+    font-size: 18px;
     transform: translate(-50%, 0);
+}
+
+.f2 {
+    position: relative;
+    transform: translate(15%, 15%);
+    left: 0%;
+    margin: 0 auto;
 }
 
 .f3 {
@@ -47,39 +83,15 @@ h3 {
     font-size: 18px;
 }
 
-.centers {
-	text-align: center;
-	padding: 0px 0px;
-}
-
-.mainblock {
-	margin: 0 auto;
-	width: 35%;
-	height: 60%;
-	position: relative;
-	border: solid 3px black;
-	border-radius: 20px;
-	justify-content: center;
-}
-
 .rateblock {
-	margin: 0 auto;
-    width: 75%;
-	height: 65%;
-    z-index: 1;
-	position: relative;
-	border: solid 3px black;
-	overflow-x: hidden;
-    overflow-y: scroll;
-	justify-content: center;
-}
-
-.testblock {
     margin: 0 auto;
-    width: 55%;
-    height: 90%;
+    width: 75%;
+    height: 65%;
+    z-index: 1;
+    position: relative;
     border: solid 3px black;
-    border-radius: 20px;
+    overflow-x: hidden;
+    overflow-y: scroll;
     justify-content: center;
 }
 
@@ -91,37 +103,25 @@ h3 {
     height: 80%;
 }
 
-.f2 {
-	position: relative;
-    transform: translate(15%, 15%);
-	left: 0%;
-	margin: 0 auto;
-}
-
-.nov {
-    left: 50%;
-}
-
 .enter {
-	background-color: white;
+    background-color: white;
     color: black;
-	border: solid 2px black;
-	border-radius: 12px;
-	font-family: "Sylfaen", serif;
-	font-size: 25px;
-	margin: 0 auto;
-	position: relative;
+    border: solid 2px black;
+    border-radius: 12px;
+    font-family: "Sylfaen", serif;
+    font-size: 25px;
+    margin: 0 auto;
+    position: relative;
     width: 40%;
     height: 100%;
     left: 50%;
     transform: translate(-50%, 30%);
 }
 
-
 .enter:hover {
     background-color: #6173b0;
     color: white;
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .fx {
@@ -134,30 +134,6 @@ h3 {
 
 .green:hover {
     background-color: green;
-}
-
-
-table {
-	position: relative;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    border-spacing: 60px 0px;
-}
-
-.tt {
-    left: 500px;
-    display:none !important;
-}
-
-th, td {
-   text-align: center;
-   font-family: "Sylfaen", serif;
-   font-size: 25px;
-   padding: 3px;
-}
-
-th {
-    font-size: 23px;
 }
 
 .minn {
@@ -180,36 +156,15 @@ th {
     top: -13px;
 }
 
-select, option {
-	font-family: "Sylfaen", serif;
-    font-size: 20px;
-}
-
-.mi {
-	padding: 0px 10px;
-}
-
-a {
-    color: #005da8;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #00bfff;
-}
-
 .flexer {
     justify-content: center;
     display: flex;
 }
 
-.first, .second, .third, .fourth {
-    justify-content: center;
-    display: flex;
-    padding: 0% 2%;
-}
-
-.test {
+.first,
+.second,
+.third,
+.fourth {
     justify-content: center;
     display: flex;
     padding: 0% 2%;

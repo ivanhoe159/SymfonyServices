@@ -9,17 +9,11 @@
     <link rel="stylesheet" href="{{ asset('styles.css') }}">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script>
-        function openForm() {
-            document.getElementById("money-form").style.display = "block";
+        function openForm(id) {
+            document.getElementById(id).style.display = "block";
         }
-            function closeForm() {
-            document.getElementById("money-form").style.display = "none";
-        }
-        function openSettings() {
-            document.getElementById("t-settings").style.display = "block";
-        }
-        function closeSettings() {
-            document.getElementById("t-settings").style.display = "none";
+            function closeForm(id) {
+            document.getElementById(id).style.display = "none";
         }
     </script>
 </head>
@@ -27,10 +21,10 @@
 <h1 class="maxx">Balance and transactions</h1>
 <div class="flexer maxx">
     <div class="second">
-        <p><button type="submit" class="enter f2 fx green" onclick="openForm()">Add money</button></p>
+        <p><button type="submit" class="enter f2 fx green" onclick="openForm('money-form')">Add money</button></p>
     </div>
     <div class="fourth">
-        <p><button type="submit" class="enter f2 fx green" onclick="openSettings()">Sort transactions</button></p>
+        <p><button type="submit" class="enter f2 fx green" onclick="openForm('t-settings')">Sort transactions</button></p>
     </div>
     <div class="fourth">
         <form role="form" action="{{ path('balance') }}" autocomplete="off" method="POST">
@@ -56,7 +50,7 @@
         <input class="f1" type="number" value="1" min="1" max="25000" name="summ">
         <p><input type="submit" class="enter f2 green" value="Add"></p>
     </form>
-    <p><button class="enter f2 red" onclick="closeForm()">Close</button></p>
+    <p><button class="enter f2 red" onclick="closeForm('money-form')">Close</button></p>
 </div>
 <div class="formhidd" id='t-settings'>
     <form role="form" action="{{ path('sortTransactions') }}" autocomplete="off" method="POST">
@@ -74,7 +68,7 @@
         </select>
         <p><input type="submit" class="enter f2 green" value="Sort"></p>
     </form>
-    <p><button class="enter f2 red" onclick="closeSettings()">Close</button></p>
+    <p><button class="enter f2 red" onclick="closeForm('t-settings')">Close</button></p>
 </div>
 <div class="rateblock">
     <br>
