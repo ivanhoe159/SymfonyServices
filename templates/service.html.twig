@@ -71,7 +71,7 @@
                 <th>{{ service.cost * service.value }}</th>
                 <th>{{ service.value }}</th>
                 <form role="form" action="{{ path('removeService', { 'id': service.id }) }}" autocomplete="off" method="POST">
-                <th><button type="submit" name = "idBut" class ="enter del deltd red">X</button></th>
+                <th><button type="submit" name = "idBut" onclick="return confirm('Are you sure?');" class ="enter del deltd red">X</button></th>
                 </form>
             </tr>
         {% set num = num + 1 %}
