@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Current services</title>
+    <link rel="stylesheet" href="{{ asset('styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+        function openForm() {
+            document.getElementById("service-form").style.display = "block";
+        }
+        function closeForm() {
+            document.getElementById("service-form").style.display = "none";
+        }
+    </script>
+</head>
+<body>
+<h1 class="maxx">Services</h1>
+<div class="flexer maxx">
+    <div class="first">
+            <p><button type="submit" class="enter f2 fx green" onclick="openForm()">New service</button></p>
+    </div>
+    <div class="second">
+        <form method = "get" action = "/balance">
+            <p><button type="submit" class="enter f2 fx">To balance</button></p>
+        </form>
+    </div>
+</div>
+<h2>Current balance: {{ budget[0].balance }} RUB. {{ warn }}</h2>
+<div class="formhidd mids" id='service-form'>
+    <form role="form" action="{{ path('addNewService') }}" autocomplete="off" method="POST">
+        <p class="pos">Services</p>
+        <select class="f1" name="selects">
+            {% set numm = 1 %}
+            {% for service in services %}
+                {% if service.active == 0  %}
+                    {% set numm = 2 %}
+                    <option value="{{ service.id }}">{{ service.name }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <p class="pos">Value</p>
+        <input class="f1" type="number" value="1" min="1" name="val">
+        {% if numm == 2 %}
+        <p><input type="submit" class="enter f2 green" value="Subscribe"> </form>
+        {% else %}
+        <p class="pos">Nothing to add!</p> </form>
+        {% endif %}
+    <p><button class="enter f2 red" onclick="closeForm()">Close</button></p>
+</div>
+{% set allcost = 0 %}
+<div class="rateblock">
+    <br>
+    <table>
+        <tr>
+            <td>Number</td>
+            <td>Service</td>
+            <td>Cost</td>
+            <td>Value</td>
+            <td>Remove</td>
+        </tr>
+        {% set num = 1 %}
+        {% for service in services %}
+            {% if service.active == 1  %}
+            <tr>
+                <th>{{ num }}</th>
+                <th>{{ service.name }}</th>
+                <th>{{ service.cost * service.value }}</th>
+                <th>{{ service.value }}</th>
+                <form role="form" action="{{ path('removeService', { 'id': service.id }) }}" autocomplete="off" method="POST">
+                <th><button type="submit" name = "idBut" onclick="return confirm('Are you sure?');" class ="enter del deltd red">X</button></th>
+                </form>
+            </tr>
+        {% set num = num + 1 %}
+        {% set allcost = allcost + service.cost * service.value %}
+            {% endif %}
+        {% endfor %}
+    </table>
+    <h2 class="minn">Current services payment: {{ allcost }} RUB/month</h2>
+</div>
+</body>
+</html>
