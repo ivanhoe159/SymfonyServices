@@ -13,24 +13,34 @@ class BalanceController extends AbstractController
 {
     public function payAllServices(ManagerRegistry $doctrine)
     {
+        $warn = '';
         $entity = $doctrine->getManager();
         $repository = $doctrine->getRepository(service::class);
         $services = $repository->findBy(['active' => 1],);
-        foreach($services as $service)
-        {
-            $balancer = $doctrine->getRepository(usermoney::class)->find(1);
-            $balance = $balancer->getBalance();
-            $entity = $doctrine->getManager();
-            $transaction = new Transactions();
-            $transaction->setService($service->getName());
-            $transaction->setTransdate(date_create_from_format('Y-m-d', date("Y-m-d")));
-            $transaction->setCost($service->getCost() * $service->getValue() * -1);
-            $transaction->setBalance($balance - $service->getCost() * $service->getValue());
-            $balancer->setBalance($balance - $service->getCost() * $service->getValue());
-            $entity->flush();
-            $entity->persist($transaction);
-            $entity->flush();
+        $allcost = 0;
+        $balancer = $doctrine->getRepository(usermoney::class)->find(1);
+        $balance = $balancer->getBalance();
+        foreach($services as $service) {
+           $allcost = $service->getCost() * $service->getValue();
         }
+        if($allcost < $balance) {
+            foreach ($services as $service) {
+                $balancer = $doctrine->getRepository(usermoney::class)->find(1);
+                $balance = $balancer->getBalance();
+                $entity = $doctrine->getManager();
+                $transaction = new Transactions();
+                $transaction->setService($service->getName());
+                $transaction->setTransdate(date_create_from_format('Y-m-d', date("Y-m-d")));
+                $transaction->setTransname("Плата за услуги");
+                $transaction->setCost($service->getCost() * $service->getValue() * -1);
+                $transaction->setBalance($balance - $service->getCost() * $service->getValue());
+                $balancer->setBalance($balance - $service->getCost() * $service->getValue());
+                $entity->flush();
+                $entity->persist($transaction);
+                $entity->flush();
+            }
+        }
+        else $warn = "Not enough money to pay!";
         $repository = $doctrine->getRepository(usermoney::class);
         $budget = $repository->findAll();
         $repository = $doctrine->getRepository(transactions::class);
@@ -41,6 +51,7 @@ class BalanceController extends AbstractController
             'budget' => $budget,
             'transactions' => $transactions,
             'services' => $services,
+            'warn' => $warn,
         ]);
     }
 
@@ -55,6 +66,7 @@ class BalanceController extends AbstractController
         $transaction = new Transactions();
         $transaction->setService('Пополнение счета');
         $transaction->setTransdate(date_create_from_format('Y-m-d', date("Y-m-d")));
+        $transaction->setTransname("Зачисление денег");
         $transaction->setCost($summa);
         $transaction->setBalance($balance->getBalance());
         $entity->persist($transaction);
@@ -69,6 +81,7 @@ class BalanceController extends AbstractController
             'budget' => $budget,
             'transactions' => $transactions,
             'services' => $services,
+            'warn' => '',
         ]);
     }
 
@@ -87,6 +100,7 @@ class BalanceController extends AbstractController
             'budget' => $budget,
             'transactions' => $transactions,
             'services' => $services,
+            'warn' => '',
         ]);
     }
 }

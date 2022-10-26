@@ -21,6 +21,7 @@ class MainController extends AbstractController {
             'budget' => $budget,
             'transactions' => $transactions,
             'services' => $services,
+            'warn' => '',
         ]);
     }
     public function service(ManagerRegistry $doctrine)
@@ -32,6 +33,7 @@ class MainController extends AbstractController {
         return $this->render('service.html.twig', [
             'services' => $services,
             'budget' => $budget,
+            'warn' => '',
         ]);
     }
 }

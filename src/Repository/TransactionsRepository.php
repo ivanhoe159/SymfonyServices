@@ -47,7 +47,7 @@ class TransactionsRepository extends ServiceEntityRepository
             $query = $entityManager->createQuery(
                 'SELECT p
             FROM App\Entity\Transactions p
-            WHERE p.transdate > :date_start AND p.transdate < :date_finish AND p.service = :sname'
+            WHERE p.transdate >= :date_start AND p.transdate <= :date_finish AND p.service = :sname'
             );
             $query->setParameters(array(
                 'date_start' => $date_start,
@@ -58,14 +58,13 @@ class TransactionsRepository extends ServiceEntityRepository
             $query = $entityManager->createQuery(
                 'SELECT p
             FROM App\Entity\Transactions p
-            WHERE p.transdate > :date_start AND p.transdate < :date_finish'
+            WHERE p.transdate >= :date_start AND p.transdate <= :date_finish'
             );
             $query->setParameters(array(
                 'date_start' => $date_start,
                 'date_finish' => $date_finish,));
         }
 
-        // returns an array of Product objects
         return $query->getResult();
     }
 

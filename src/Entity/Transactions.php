@@ -17,6 +17,9 @@ class Transactions
     #[ORM\Column(length: 255)]
     private ?string $service = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $transname = null;
+
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $transdate = null;
 
@@ -40,6 +43,17 @@ class Transactions
     {
         $this->service = $service;
 
+        return $this;
+    }
+
+    public function getTransname(): ?string
+    {
+        return $this->transname;
+    }
+
+    public function setTransname(string $transname): self
+    {
+        $this->transname = $transname;
         return $this;
     }
 
