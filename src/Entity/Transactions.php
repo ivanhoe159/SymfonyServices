@@ -3,31 +3,44 @@
 namespace App\Entity;
 
 use App\Repository\TransactionsRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: TransactionsRepository::class)]
+/**
+ * @ORM\Entity(repositoryClass=TransactionsRepository::class)
+ */
 class Transactions
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
-    #[ORM\Column(length: 255)]
-    private ?string $service = null;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $service;
 
-    #[ORM\Column(length: 255)]
-    private ?string $transname = null;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $transname;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $transdate = null;
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $transdate;
 
-    #[ORM\Column]
-    private ?float $cost = null;
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $cost;
 
-    #[ORM\Column]
-    private ?float $balance = null;
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $balance;
 
     public function getId(): ?int
     {
@@ -54,6 +67,7 @@ class Transactions
     public function setTransname(string $transname): self
     {
         $this->transname = $transname;
+
         return $this;
     }
 

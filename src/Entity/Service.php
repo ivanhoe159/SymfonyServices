@@ -5,28 +5,37 @@ namespace App\Entity;
 use App\Repository\ServiceRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ServiceRepository::class)]
+/**
+ * @ORM\Entity(repositoryClass=ServiceRepository::class)
+ */
 class Service
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
 
-    #[ORM\Column]
-    private ?float $cost = null;
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $cost;
 
-    #[ORM\Column]
-    private ?int $active = null;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $active;
 
-    #[ORM\Column]
-    private ?int $value = null;
-
-    #[ORM\Column]
-    private ?int $maximvalue = null;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $value;
 
     public function getId(): ?int
     {
@@ -65,6 +74,7 @@ class Service
     public function setActive(int $active): self
     {
         $this->active = $active;
+
         return $this;
     }
 
@@ -76,17 +86,7 @@ class Service
     public function setValue(int $value): self
     {
         $this->value = $value;
-        return $this;
-    }
 
-    public function getMaximvalue(): ?int
-    {
-        return $this->maximvalue;
-    }
-
-    public function setMaximvalue(int $maximvalue): self
-    {
-        $this->maximvalue = $maximvalue;
         return $this;
     }
 }

@@ -1,31 +1,32 @@
 controllers:
-    resource: ../src/Controller/
-    type: attribute
+  resource: ../src/Controller/
+  type: annotation
 
 balance:
-    path: /balance
-    controller: App\Controller\MainController::balance
+  path: /balance
+  controller: App\Controller\MainController::balance
 
 service:
-    path: /service
-    controller: App\Controller\MainController::service
+  path: /service
+  controller: App\Controller\MainController::service
 
 addMoney:
-    path: /balance/add
-    controller: App\Controller\BalanceController::addMoney
+  path: /balance/add
+  controller: App\Controller\BalanceController::addMoney
 
 payAllServices:
-    path: /balance/payAll
-    controller: App\Controller\BalanceController::payAllServices
+  path: /balance/payAll
+  controller: App\Controller\BalanceController::payAllServices
 
 sortTransactions:
-    path: /balance/sort
-    controller: App\Controller\BalanceController::sortTransactions
+  path: /balance/sort
+  controller: App\Controller\BalanceController::sortTransactions
 
 removeService:
-    path: /service/{id}
-    controller: App\Controller\ServiceController::removeService
+  path: /service/{id}
+  controller: App\Controller\ServiceController::removeService
 
 addNewService:
-    path: /service/add/1
-    controller: App\Controller\ServiceController::addNewService
+  path: /service/add/1
+  controller: App\Controller\ServiceController::addNewService
+

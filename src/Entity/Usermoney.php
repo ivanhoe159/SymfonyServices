@@ -5,19 +5,27 @@ namespace App\Entity;
 use App\Repository\UsermoneyRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: UsermoneyRepository::class)]
+/**
+ * @ORM\Entity(repositoryClass=UsermoneyRepository::class)
+ */
 class Usermoney
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
-    #[ORM\Column(length: 255)]
-    private ?string $login = null;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $login;
 
-    #[ORM\Column]
-    private ?float $balance = null;
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $balance;
 
     public function getId(): ?int
     {

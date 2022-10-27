@@ -21,7 +21,7 @@ class BalanceController extends AbstractController
         $balancer = $doctrine->getRepository(usermoney::class)->find(1);
         $balance = $balancer->getBalance();
         foreach($services as $service) {
-           $allcost = $service->getCost() * $service->getValue();
+            $allcost = $service->getCost() * $service->getValue();
         }
         if($allcost < $balance) {
             foreach ($services as $service) {
