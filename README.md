@@ -5,4 +5,4 @@ service.sql - MySQL database
 
 nginx.conf - nginx server configuration
 
-documentation.docx - screenshots with all available functions
+documentation.docx - site screenshots (all available functions)
